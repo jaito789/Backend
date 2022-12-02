@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Empresa;
 use App\Models\Empleado;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,10 @@ class Empleado extends Model
     "Localidad",
     "Direccion",
 ];
+public function empresa(){
+    return $this->belongsTo(Empresa::class,'idEmpresa','id');
+
+}
 public $timestamps = false;
 
 /* public function empleado(){

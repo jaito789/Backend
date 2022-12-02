@@ -9,7 +9,10 @@ use App\Http\Controllers\Controller;
 class EmpTareaController extends Controller
 {
     public function ObtenerTareasEmpresa(){
-        $tareas = Emp_tarea::all();
+
+        $tareas = Emp_tarea::join('empleados','emp_tareas.idEmpleado','=','empleados.id')
+        ->join('tareas','emp_tareas.idTarea','=','tareas.id')
+        ->get();
         return $tareas;
     }
 

@@ -14,4 +14,5 @@ class Emp_tarea extends Model
         "idTarea",
 
     ];
+    
 }

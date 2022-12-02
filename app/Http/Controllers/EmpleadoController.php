@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class EmpleadoController extends Controller
 {
     public function obtenerEmpleado(){
-        $empleados = Empleado::all();
-        // $empleados = Empleado::with(['empresas:id,NombreEmpresa']);
+        //$empleados = Empleado::all();
+        $empleados = Empleado::with('empresa')->get();
         return $empleados;
     }
 
