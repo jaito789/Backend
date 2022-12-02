@@ -11,7 +11,9 @@ class EmpleadoController extends Controller
 {
     public function obtenerEmpleado(){
         //$empleados = Empleado::all();
-        $empleados = Empleado::with('empresa')->get();
+        $empleados = Empleado::join('empresas','empleados.idEmpresa','=','empresas.id')
+        ->get();
+        //$empleados = Empleado::with('empresa')->get();
         return $empleados;
     }
 
