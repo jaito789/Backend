@@ -12,6 +12,16 @@ class EmpresaController extends Controller
         $empresas = Empresa::all();
         return $empresas;
     }
+    public function obtenerunaempresa($id){
+        $empresas = Empresa::find($id);
+        if(!$empresas){
+            return response([
+                'message'=>'Error, no se encontro la empresa ' . $id,
+            ], 404);
+        }
+        return $empresas;
+
+    }
     public function AltaEmpresa(Request $request){
         $datos=$request->validate($this->validationRequest());
 

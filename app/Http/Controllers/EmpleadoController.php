@@ -12,13 +12,28 @@ class EmpleadoController extends Controller
     public function obtenerEmpleado(){
         //$empleados = Empleado::all();
         $empleados = Empleado::join('empresas','empleados.idEmpresa','=','empresas.id')
+        ->select(
+            'empleados.*',
+            'empresas.id as idEmpresa'
+        )
         ->get();
         //$empleados = Empleado::with('empresa')->get();
+        return $empleados;
+    }
+    public function obtenerunempleado($id){
+
+        $empleados = Empleado::find($id);
+        if(!$empleados){
+            return response([
+                'message'=>'Error, no se encontro el empleado ' . $id,
+            ], 404);
+        }
         return $empleados;
     }
 
     public function agregarEmpleado(Request $request){
         $datos=$request->validate($this->validationRequest());
+
 
         $empleados = Empleado::create($datos);
 

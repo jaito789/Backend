@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tarea;
+use App\Models\Empleado;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Emp_tarea extends Model
 {
@@ -14,5 +16,12 @@ class Emp_tarea extends Model
         "idTarea",
 
     ];
-    
+
+    public function empleado(){
+        return $this->belongsTo(Empleado::class, 'idEmpresa', 'id');
+    }
+    public function tarea(){
+        return $this->belongsTo(Tarea::class, 'idTarea', 'id');
+    }
+
 }

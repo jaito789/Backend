@@ -12,6 +12,15 @@ class TareaController extends Controller
         $tareas = Tarea::all();
         return $tareas;
     }
+    public function obtenerunatarea($id){
+                $tarea = Tarea::find($id);
+        if(!$tarea){
+            return response([
+                'message'=>'Error, no se encontro la tarea ' . $id,
+            ], 404);
+        }
+        return $tarea;
+    }
 
     public function addtarea(Request $request){
         $datos=$request->validate($this->validationRequest());
@@ -28,7 +37,7 @@ class TareaController extends Controller
         $tarea = Tarea::find($id);
         if(!$tarea){
             return response([
-                'message'=>'Error, no se enccontro la tarea ' . $id,
+                'message'=>'Error, no se enccontro la tarea con el id ' . $id,
             ], 404);
         }
         $datos=$request->validate($this->validationRequest());
@@ -45,7 +54,7 @@ class TareaController extends Controller
 
         if(!$tarea){
              return response([
-                 'message'=> 'Error no se encontro la tarea ' . $id
+                 'message'=> 'Error no se encontro la tarea con el id' . $id
              ],404);
          }
 
